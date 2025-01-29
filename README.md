@@ -1,36 +1,130 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Next.js To-Do List with Prisma & MongoDB
 
-## Getting Started
+A full-stack **To-Do List App** built with **Next.js 15 (App Router)**, **Prisma ORM**, and **MongoDB**.  
+Supports **CRUD operations** (Create, Read, Update, Delete) and **API integration**.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 📌 Features
+✅ **Next.js 15 (App Router)** - Modern file-based routing  
+✅ **Prisma ORM** - Type-safe database queries  
+✅ **MongoDB Atlas** - Scalable NoSQL database  
+✅ **REST API** - Fully functional API with Next.js Route Handlers  
+✅ **TailwindCSS** - Beautiful, responsive UI  
+✅ **State Management (Zustand)** - Lightweight & efficient  
+
+---
+
+## 📂 **Project Structure**
+```
+todolist/
+│── prisma/             # Prisma schema & migrations
+│── public/             # Static assets
+│── src/
+│   ├── app/            # Next.js App Router structure
+│   │   ├── api/        # API routes (Next.js API Handlers)
+│   │   ├── data/       # Frontend pages
+│   ├── utils/          # Prisma Client & helper functions
+│── .env                # Environment variables
+│── package.json        # Dependencies
+│── tailwind.config.ts  # TailwindCSS configuration
+│── tsconfig.json       # TypeScript configuration
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔧 **Installation & Setup**
+### **1️⃣ Clone the Repository**
+```bash
+git clone <repo_url>
+cd <project_folder>
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### **2️⃣ Install Dependencies**
+```bash
+npm install
+```
 
-## Learn More
+### **3️⃣ Configure Environment Variables**
+Create a `.env` file and add your **MongoDB Connection String**
+```env
+DATABASE_URL="mongodb+srv://username:password@cluster.mongodb.net/todolist"
+```
 
-To learn more about Next.js, take a look at the following resources:
+### **4️⃣ Set Up Prisma**
+```bash
+npx prisma generate  # Generate Prisma Client
+npx prisma db push   # Sync database schema
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### **5️⃣ Start the Development Server**
+```bash
+npm run dev
+```
+✅ Open [http://localhost:3000](http://localhost:3000) to see your app running.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🔧 **Common `npm` Commands**
+| **Command** | **Description** |
+|------------|----------------|
+| `npm install` | Install dependencies from `package.json` |
+| `npm run dev` | Start the Next.js development server (`localhost:3000`) |
+| `npm run build` | Create a production build |
+| `npm start` | Run the production server |
+| `npx prisma generate` | Generate Prisma Client (after schema changes) |
+| `npx prisma db push` | Sync Prisma schema with MongoDB |
+| `npx prisma studio` | Open Prisma Studio (GUI for database management) |
+| `npx prisma -v` | Check Prisma version |
+| `npm run lint` | Run ESLint for code quality |
+| `npm run format` | Format code with Prettier |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📌 **API Endpoints (REST API)**
+| Method | Endpoint          | Description             |
+|--------|------------------|-------------------------|
+| `GET`  | `/api/data`      | Fetch all To-Dos       |
+| `POST` | `/api/data`      | Create a new To-Do     |
+| `PUT`  | `/api/data`      | Update a To-Do         |
+| `DELETE` | `/api/data`   | Delete a To-Do         |
+
+📌 **Example `POST /api/data` Request**
+```json
+{
+  "title": "Learn Next.js",
+  "description": "Build a full-stack app with Next.js"
+}
+```
+
+---
+
+## 🚀 **Deployment**
+### ✅ **Deploy to Vercel**
+```bash
+npm run build
+vercel deploy
+```
+
+### ✅ **Deploy to Railway**
+1. Create a database on **Railway**  
+2. Set `DATABASE_URL` in `.env`  
+3. Run:
+```bash
+railway up
+```
+
+---
+
+## 📜 **License**
+This project is licensed under the **MIT License**.
+
+---
+
+## ✨ **Credits**
+Developed by **[Your Name]** 🚀  
+Powered by **Next.js, Prisma, and MongoDB**.
+
+---
+
+### 🎯 **Now your README is fully documented & ready to use! 🚀**
