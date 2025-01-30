@@ -1,27 +1,23 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import { prisma } from "@/lib/prisma";
 
 export async function GET() {
-    const alldata = await prisma.data.findMany();
-    console.log('alldata',alldata);
-    
-    return NextResponse.json(alldata);
+  const alldata = await prisma.dota2.findMany();
+
+  return NextResponse.json(alldata);
 }
 
-export async function POST(req:NextResponse) {
-    const { title , description } = await req.json();
+export async function POST(req: Request) {
 
-    const newPost = await prisma.data.create({
-      data: { title , description },
-    });
   
-    return NextResponse.json(newPost);
-}
-export async function PUT(req:NextResponse) {
-    
-}
-export async function DELETE(req:NextResponse) {
-    
+  const body = await req.json();
+
+  
+  const { title, description } = body;
+
+  const newPost = await prisma.dota2.create({
+    data: { title, description },
+  });
+
+  return NextResponse.json(newPost);
 }
