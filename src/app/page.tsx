@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { useToast } from "@/hooks/use-toast"
+import { useToast } from "@/hooks/use-toast";
 
 import { useEffect, useState } from "react";
 
@@ -14,7 +14,7 @@ type TodoType = {
 };
 
 export default function Home() {
-  const { toast } = useToast()
+  const { toast } = useToast();
   const [items, setItems] = useState<TodoType[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [inputValueDes, setInputValueDes] = useState("");
@@ -33,15 +33,12 @@ export default function Home() {
   const postData = async () => {
     if (!inputValue) {
       toast({
-     
         title: "PLS กรอกข้อมูล",
         description: "ถ้าไม่กรอกก็ไม่ได้ส่งนะครับ",
-      })
-
-   
+      });
 
       return;
-    };
+    }
     try {
       await fetch("/api/data", {
         method: "POST",
@@ -114,7 +111,21 @@ export default function Home() {
         />
         <Button
           className="px-4 py-2 rounded-lg bg-black text-white hover:bg-gray-800 transition"
-          onClick={editingId === null ? postData : updateData}
+          onClick={async () => {
+            if (editingId === null) {
+              await postData(); // รอให้โพสต์ข้อมูลเสร็จ
+              toast({
+                title: "Success",
+                description: "Data has been added successfully!",
+              });
+            } else {
+              await updateData(); // รอให้แก้ไขข้อมูลเสร็จ
+              toast({
+                title: "Updated",
+                description: "Data has been updated successfully!",
+              });
+            }
+          }}
         >
           {editingId === null ? "Add" : "Update"}
         </Button>
